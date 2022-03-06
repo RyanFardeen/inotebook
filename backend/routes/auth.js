@@ -13,6 +13,7 @@ var JWT_SECRET = "ryanisagoodb$oy";
 
 //ROUTE 1: No Auth required for creating a user   POST : /api/auth/createuser
 router.post(
+  
   "/createuser",
   [
     body("name", "Enter a valid username").isLength({ min: 3 }),
@@ -22,10 +23,11 @@ router.post(
     }),
   ],
   async (req, res) => {
+    let success = false
     // if errors it will return a bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     try {
@@ -34,7 +36,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ error: "User with this email already exists" });
+          .json({success, error: "User with this email already exists" });
       }
 
       //hashing the password
@@ -55,7 +57,8 @@ router.post(
       var authtoken = jwt.sign(data, JWT_SECRET);
 
       // res.json(jwtData)
-      res.json({ authtoken });
+      success = true
+      res.json({ success, authtoken });
     } catch (error) {
       console.log(error.messsage);
     }
@@ -77,7 +80,7 @@ router.post(
     // if errors it will return a bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     //gets email and password
