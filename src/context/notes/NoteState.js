@@ -3,7 +3,7 @@ import NoteContext  from "./noteContext";
 
 
 const NoteState = (props) => {
-  const host = "https://inotebook-reactjs.herokuapp.com"
+  const host = "https://inotebook---backend.herokuapp.com"
     const notesInitial = [ ]
 
     const [notes, setNotes  ] = useState(notesInitial)
