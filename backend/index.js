@@ -1,6 +1,7 @@
 const connectToMongo = require('./db');
 const express = require('express')
 var cors = require('cors') 
+require('dotenv').config()
 
 connectToMongo()
 const app = express()
@@ -15,6 +16,6 @@ app.use('/api/notes', require('./routes/notes'));
 
 
 
-app.listen(port, () => {
+app.listen( process.env.PORT || port, () => {
   console.log(`iNotebook backend listening on port ${port}`)
 })
