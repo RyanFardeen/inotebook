@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const mongoURI = "mongodb://localhost:27017/inotebook?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
+const mongoURI = "mongodb+srv://ryan:allahallah001@cluster0.pbjlw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const connectToMongo = () => {
     mongoose.connect(mongoURI, () => {
